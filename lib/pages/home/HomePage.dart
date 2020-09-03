@@ -85,9 +85,10 @@ class HomeContent extends StatelessWidget {
                           Text('88',style: TextStyle(fontSize: Adapt.px(36),color: Colors.indigo[400])),
                         ]),
                         onTap: (){
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=>myAssets())
-                          );
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(builder: (context)=>myAssets())
+                          // );
+                          Navigator.pushNamed(context, '/myAssets',);
                         },
                         ),
                         GestureDetector(

@@ -3,6 +3,8 @@ import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/components/assets_cell.dart';
 
 class departAssets extends StatefulWidget {
+  final arguments;
+  departAssets({this.arguments});
   @override
   _departAssetsState createState() => _departAssetsState();
 }

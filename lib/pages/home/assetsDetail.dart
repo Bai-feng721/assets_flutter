@@ -4,6 +4,8 @@ import 'package:myapp/components/assets_cell.dart';
 
 
 class asstesDetail extends StatefulWidget {
+  final arguments;
+  asstesDetail({this.arguments});
   @override
   _asstesDetailState createState() => _asstesDetailState();
 }

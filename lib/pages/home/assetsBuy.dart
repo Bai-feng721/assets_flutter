@@ -3,6 +3,8 @@ import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/components/assets_cell.dart';
 
 class assetsBuy extends StatefulWidget {
+   final arguments;
+  assetsBuy({this.arguments});
   @override
   _assetsBuyState createState() => _assetsBuyState();
 }

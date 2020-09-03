@@ -3,6 +3,8 @@ import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/components/assets_take.dart';
 
 class assetsTake extends StatefulWidget {
+  final arguments;
+  assetsTake({this.arguments});
   @override
   _assetsTakeState createState() => _assetsTakeState();
 }

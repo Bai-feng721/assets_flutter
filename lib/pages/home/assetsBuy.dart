@@ -39,7 +39,7 @@ class _assetsBuyState extends State<assetsBuy> {
             image: 'lib/assets/images/pic.png',
           ),
            assetsCell(
-            name:'${arguments}',
+            name:'${arguments['id']}',
             code:'dewdsaa1121cacsacacaa2w',
           ),
            assetsCell(

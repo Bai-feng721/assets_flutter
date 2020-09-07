@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
-import 'package:myapp/pages/home/assetsDetail.dart';
 
-class assetsCell extends StatefulWidget {
+class repairCell extends StatefulWidget {
   final String image;
   final String name;
   final String code;
   final Function onTap;
-  const assetsCell({
+  const repairCell({
     Key key,
     this.onTap,
-    this.code,
     this.image,
     this.name,
-  }) : super(key:key);
+    this.code
+  }): super(key:key);
   @override
-  _assetsCellState createState() => _assetsCellState();
+  _repairCellState createState() => _repairCellState();
 }
 
-class _assetsCellState extends State<assetsCell> {
+class _repairCellState extends State<repairCell> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-    child: Container(
-      // margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-      decoration: BoxDecoration(
+    return Container(
+       decoration: BoxDecoration(
             border: Border(
               right: BorderSide(width: Adapt.px(20),color: Color(0xFFf2f2f2)),
               // top: BorderSide(width: Adapt.px(20),color: Color(0xFFf2f2f2)),
@@ -47,23 +43,16 @@ class _assetsCellState extends State<assetsCell> {
             overflow: TextOverflow.ellipsis,),
         trailing:
            Container(
-            alignment: Alignment.center,
-            height: Adapt.px(50),
-            width: Adapt.px(100),
-            decoration: BoxDecoration(
-              color: Color(0xFFfd8900),
-              borderRadius: BorderRadius.all(Radius.circular(Adapt.px(30))),
-              ),
-            child: Text('在用'),
-          )
+             width: Adapt.px(150),
+             child: FlatButton(
+            child: Text("维修",style: TextStyle(color: Colors.white),),
+            color: Color(0xff4859ff),
+            onPressed: () {
+              Navigator.pushNamed(context, '/repairApply',arguments: {'code':this.widget.code});
+            },
+          ),
+           )
         )
-         
-        
-      ),
-      onTap:(){
-       Navigator.pushNamed(context, '/detail');
-      },
-      );
+    );
   }
 }
-

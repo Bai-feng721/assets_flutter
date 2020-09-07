@@ -3,13 +3,15 @@ import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/components/assets_take.dart';
 
 class assetsTake extends StatefulWidget {
-  final arguments;
-  assetsTake({this.arguments});
+   Map arguments;
+  assetsTake({Key key,this.arguments}):super(key:key);
   @override
   _assetsTakeState createState() => _assetsTakeState();
 }
 
 class _assetsTakeState extends State<assetsTake> {
+  get arguments => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

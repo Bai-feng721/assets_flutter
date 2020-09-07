@@ -1,8 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/home/repairApply.dart';
 import 'package:myapp/units/Adapt.dart';
-import 'package:myapp/pages/home/departAssets.dart';
-import 'package:myapp/pages/home/assetsTake.dart';
 import 'package:myapp/pages/home/drawerPage.dart';
 
 class HomeContent extends StatelessWidget {
@@ -98,9 +98,7 @@ class HomeContent extends StatelessWidget {
                           Text('88',style: TextStyle(fontSize: Adapt.px(36),color: Colors.indigo[400])),
                         ]),
                         onTap: (){
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=>departAssets())
-                          );
+                           Navigator.pushNamed(context, '/departAssets', arguments: {});
                         },
                         ),
                       ],
@@ -138,20 +136,26 @@ class HomeContent extends StatelessWidget {
                        },//点击
                       ),
                       
-                       Container(
-                      padding: EdgeInsets.all(15),
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                          Image.asset(
-                            'lib/assets/images/icon_bf.png',
-                            width: Adapt.px(60),
-                            height: Adapt.px(60),
-                            fit: BoxFit.cover,
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                            child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                              Image.asset(
+                                'lib/assets/images/icon_bf.png',
+                                width: Adapt.px(60),
+                                height: Adapt.px(60),
+                                fit: BoxFit.cover,
+                              ),
+                              Text('资产报废', style: TextStyle(fontSize: Adapt.px(32) ))
+                            ],
                           ),
-                          Text('资产报废', style: TextStyle(fontSize: Adapt.px(32) ))
-                        ],
-                      ),
+                         ),
+                        onTap: (){
+                          Navigator.pushNamed(context, '/assetsScrap');
+                        },
                       ),
                       GestureDetector(
                         behavior: HitTestBehavior.opaque,
@@ -171,12 +175,11 @@ class HomeContent extends StatelessWidget {
                          )
                        ),
                        onTap: (){
-                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=>assetsTake())
-                          );
+                          Navigator.pushNamed(context, '/take', arguments: {});
                        },//点击
                       ),
-                       Container(
+                       GestureDetector(
+                         child:Container(
                       padding: EdgeInsets.all(15),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -190,26 +193,28 @@ class HomeContent extends StatelessWidget {
                           Text('资产移交', style: TextStyle(fontSize: Adapt.px(32) ))
                         ],
                       )),
+                      onTap: (){
+                        Navigator.pushNamed(context, '/assetsOver');
+                      },
+                       ),
                        GestureDetector(
                          child: Container(
-                      padding: EdgeInsets.all(15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                          Image.asset(
-                            'lib/assets/images/icon_wx.png',
-                            width: Adapt.px(60),
-                            height: Adapt.px(60),
-                            fit: BoxFit.cover,
-                          ),
-                          Text('资产维修', style: TextStyle(fontSize: Adapt.px(32) ))
-                        ],
-                      )),
-                      onTap: (){
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=>repairApply())
-                          );
-                      },
+                            padding: EdgeInsets.all(15),
+                            child: Column(
+                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                  Image.asset(
+                                    'lib/assets/images/icon_wx.png',
+                                    width: Adapt.px(60),
+                                    height: Adapt.px(60),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Text('资产维修', style: TextStyle(fontSize: Adapt.px(32) ))
+                                ],
+                          )),
+                          onTap: (){
+                            Navigator.pushNamed(context, '/assetsRepair');
+                          },
                        ),
                        Container(
                       padding: EdgeInsets.all(15),

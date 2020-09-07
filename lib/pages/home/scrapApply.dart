@@ -3,17 +3,20 @@ import 'package:myapp/units/Adapt.dart';
 
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
-class repairApply extends StatefulWidget {
-   Map arguments;
-  repairApply({Key key,this.arguments}) : super(key: key);
+class scrapApply extends StatefulWidget {
+  Map arguments;
+  scrapApply({
+    Key key,this.arguments
+  }):super(key:key);
   @override
-  _repairApplyState createState() => _repairApplyState(arguments:this.arguments);
+  _scrapApplyState createState() => _scrapApplyState(arguments:this.arguments);
 }
 
-class _repairApplyState extends State<repairApply> {
+class _scrapApplyState extends State<scrapApply> {
   var date;
   Map arguments;
-  _repairApplyState({this.arguments});
+  _scrapApplyState({this.arguments});
+
 
   TextEditingController _personController = new TextEditingController();
   TextEditingController _assetsController = new TextEditingController();
@@ -21,18 +24,14 @@ class _repairApplyState extends State<repairApply> {
   TextEditingController _contentController = new TextEditingController();
   GlobalKey _formKey= new GlobalKey<FormState>();
 
- 
-  ///动态widget回执完成后回自动的调用这个方法,可以在这里做初始化的一些工作
   @override
-  void initState() {
-    super.initState();    
-    //2:TextEditingController构造方法里面有个text可选参数,所以在初始的地方调用方法赋值
-    _assetsController.text="${arguments['code']}";
-    print(this._assetsController);
+  void initState(){
+    super.initState();
+    _assetsController.text='${arguments['code']}';
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('资产维修申请'),),
+      appBar: AppBar(title: Text('资产报废申请'),),
       body: Container(
         padding: EdgeInsets.all(Adapt.px(20)),
         child: Form(
@@ -44,14 +43,14 @@ class _repairApplyState extends State<repairApply> {
                   controller: _personController,
                   decoration: InputDecoration(
                       // labelText: "用户名",
-                      hintText: "请输入报修人",
-                      icon:Text('报修人员',style: TextStyle(fontSize: Adapt.px(36)),)
+                      hintText: "请输入申请人",
+                      icon:Text('申请人员',style: TextStyle(fontSize: Adapt.px(36)),)
                   ),
                   // 校验用户名
                   validator: (v) {
                     return v
                         .trim()
-                        .length > 0 ? null : "报修人不能为空";
+                        .length > 0 ? null : "申请人不能为空";
                   }
               ),
               TextFormField(
@@ -59,14 +58,14 @@ class _repairApplyState extends State<repairApply> {
                   controller: _assetsController,
                   decoration: InputDecoration(
                       // labelText: "用户名",
-                      hintText:'${arguments['code']}'??"请输入维修资产名称",
+                      hintText: "请输入报废资产名称",
                       icon: Text('资产名称',style: TextStyle(fontSize: Adapt.px(36)),)
                   ),
                   // 校验用户名
                   validator: (v) {
                     return v
                         .trim()
-                        .length > 0 ? null : "维修资产名称不能为空";
+                        .length > 0 ? null : "报废资产名称不能为空";
                   }
 
               ),
@@ -75,8 +74,8 @@ class _repairApplyState extends State<repairApply> {
                   controller: _dateController,
                   decoration: InputDecoration(
                       // labelText: "用户名",
-                      hintText:this.date?? "请选择维修日期",
-                      icon: Text('维修日期',style: TextStyle(fontSize: Adapt.px(36)),)
+                      hintText:this.date?? "请选择报废日期",
+                      icon: Text('报废日期',style: TextStyle(fontSize: Adapt.px(36)),)
                   ),
                   //点击选择日期
                   onTap: (){
@@ -108,38 +107,24 @@ class _repairApplyState extends State<repairApply> {
                   validator: (v) {
                     return v
                         .trim()
-                        .length > 0 ? null : "维修日期不能为空";
+                        .length > 0 ? null : "报废日期不能为空";
                   }
 
               ),
-              // TextFormField(
-              //     autofocus: true,
-              //     // controller: _unameController,
-              //     decoration: InputDecoration(
-              //         // labelText: "用户名",
-              //         hintText: "请输入维修费用",
-              //         icon: Text('维修费用',style: TextStyle(fontSize: Adapt.px(36)),)
-              //     ),
-              //     // 校验用户名
-              //     validator: (v) {
-              //       return v
-              //           .trim()
-              //           .length > 0 ? null : "维修费用不能为空";
-              //     }
-              // ),
+             
               TextFormField(
                   autofocus: true,
                   controller: _contentController,
                   decoration: InputDecoration(
                       // labelText: "用户名",
-                      hintText: "请输入维修内容",
-                      icon: Text('维修内容',style: TextStyle(fontSize: Adapt.px(36)),)
+                      hintText: "请输入报废内容",
+                      icon: Text('报废内容',style: TextStyle(fontSize: Adapt.px(36)),)
                   ),
                   // 校验用户名
                   validator: (v) {
                     return v
                         .trim()
-                        .length > 0 ? null : "维修内容不能为空";
+                        .length > 0 ? null : "报废内容不能为空";
                   }
               ),
               //登录

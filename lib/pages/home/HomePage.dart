@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/home/repairApply.dart';
 import 'package:myapp/units/Adapt.dart';
-import 'package:myapp/pages/home/myAssets.dart';
 import 'package:myapp/pages/home/departAssets.dart';
-import 'package:myapp/pages/home/assetsBuy.dart';
 import 'package:myapp/pages/home/assetsTake.dart';
 import 'package:myapp/pages/home/drawerPage.dart';
 
@@ -88,7 +86,7 @@ class HomeContent extends StatelessWidget {
                           // Navigator.of(context).push(
                           //   MaterialPageRoute(builder: (context)=>myAssets())
                           // );
-                          Navigator.pushNamed(context, '/myAssets',);
+                          Navigator.pushNamed(context, '/myAssets', arguments: {"ceshi": 123});
                         },
                         ),
                         GestureDetector(
@@ -136,9 +134,7 @@ class HomeContent extends StatelessWidget {
                          )
                        ),
                        onTap: (){
-                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=>assetsBuy())
-                          );
+                         Navigator.pushNamed(context,'/buy', arguments:{"id":312312312});
                        },//点击
                       ),
                       

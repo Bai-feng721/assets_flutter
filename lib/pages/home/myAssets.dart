@@ -3,13 +3,15 @@ import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/components/assets_cell.dart';
 
 class myAssets extends StatefulWidget {
-  final arguments;
-  myAssets({this.arguments});
+  Map arguments;
+  myAssets({Key key,this.arguments}):super(key:key);
   @override
   _myAssetsState createState() => _myAssetsState();
 }
 
 class _myAssetsState extends State<myAssets> {
+  get arguments => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +24,7 @@ class _myAssetsState extends State<myAssets> {
             code:'dewdsaa1121cacsacacaa2w',
           ),
           assetsCell(
+            name: '$arguments["ceshi"]',
             code:'dewdsaa1121cacsacacaa2w',
           )
         ],

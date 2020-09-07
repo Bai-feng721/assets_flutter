@@ -3,13 +3,16 @@ import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/components/assets_cell.dart';
 
 class assetsBuy extends StatefulWidget {
-   final arguments;
-  assetsBuy({this.arguments});
+  Map arguments;
+  assetsBuy({Key key,this.arguments}) : super(key: key);
   @override
-  _assetsBuyState createState() => _assetsBuyState();
+  _assetsBuyState createState() => _assetsBuyState(arguments:this.arguments);
 }
 
 class _assetsBuyState extends State<assetsBuy> {
+  Map arguments;
+  _assetsBuyState({this.arguments});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +39,7 @@ class _assetsBuyState extends State<assetsBuy> {
             image: 'lib/assets/images/pic.png',
           ),
            assetsCell(
-            name:'手机',
+            name:'${arguments}',
             code:'dewdsaa1121cacsacacaa2w',
           ),
            assetsCell(

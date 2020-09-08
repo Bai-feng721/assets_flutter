@@ -23,51 +23,41 @@ class _assetsBuyState extends State<assetsBuy> {
           assetsCell(
             name:'联想笔记本电脑',
             code:'dewdsaa1121cacsacacaa2w',
+            isshow: '1',
           ),
           assetsCell(
             name:'打印机',
             code:'dewdsaa1121cacsacacaa2w',
             image: 'lib/assets/images/pic.png',
+            isshow: '1',
+
           ),
            assetsCell(
             name:'手机',
             code:'dewdsaa1121cacsacacaa2w',
+            isshow: '1',
+
           ),
            assetsCell(
             name:'打印机',
             code:'dewdsaa1121cacsacacaa2w',
             image: 'lib/assets/images/pic.png',
+            isshow: '1',
+
           ),
            assetsCell(
             name:'${arguments['id']}',
             code:'dewdsaa1121cacsacacaa2w',
+            isshow: '1',
+
           ),
            assetsCell(
             name:'手机',
             code:'dewdsaa1121cacsacacaa2w',
+            isshow: '1',
+
           ),
-           assetsCell(
-            name:'打印机',
-            code:'dewdsaa1121cacsacacaa2w',
-            image: 'lib/assets/images/pic.png',
-          ),
-           assetsCell(
-            name:'手机',
-            code:'dewdsaa1121cacsacacaa2w',
-          ),
-           assetsCell(
-            name:'手机',
-            code:'dewdsaa1121cacsacacaa2w',
-          ),
-           assetsCell(
-            name:'打印机',
-            code:'dewdsaa1121cacsacacaa2w',
-            image: 'lib/assets/images/pic.png',
-          ),
-           assetsCell(
-            name:'手机',
-            code:'dewdsaa1121cacsacacaa2w',
-          )
+          
 
         ],
       ),

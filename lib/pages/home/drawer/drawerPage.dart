@@ -35,11 +35,11 @@ class _drawerPageState extends State<drawerPage> {
           ) ,
           ),
         new ListTile(
-            title: new Text('lifecycle'),
+            title: new Text('采购审批'),
             trailing: new Icon(Icons.arrow_right),
             onTap: () {
               Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/LifecyclePage');
+              Navigator.pushNamed(context, '/buyApproval');
             }),
         new Divider(),
         new ListTile(

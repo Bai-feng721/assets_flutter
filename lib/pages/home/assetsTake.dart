@@ -22,7 +22,7 @@ class _assetsTakeState extends State<assetsTake> {
           icon: Icon(Icons.add,color: Colors.white),
           label: Text("添加盘点",style: TextStyle(color: Colors.white),),
           onPressed: (){
-
+            Navigator.pushNamed(context,'/addTake');
           },
         ),
         ],

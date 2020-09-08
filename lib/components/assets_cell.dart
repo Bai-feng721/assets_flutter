@@ -6,6 +6,7 @@ class assetsCell extends StatefulWidget {
   final String image;
   final String name;
   final String code;
+  final String isshow;
   final Function onTap;
   const assetsCell({
     Key key,
@@ -13,6 +14,7 @@ class assetsCell extends StatefulWidget {
     this.code,
     this.image,
     this.name,
+    this.isshow
   }) : super(key:key);
   @override
   _assetsCellState createState() => _assetsCellState();
@@ -61,7 +63,7 @@ class _assetsCellState extends State<assetsCell> {
         
       ),
       onTap:(){
-       Navigator.pushNamed(context, '/detail');
+       Navigator.pushNamed(context, '/detail',arguments:{"isshow":widget.isshow??'0'});
       },
       );
   }

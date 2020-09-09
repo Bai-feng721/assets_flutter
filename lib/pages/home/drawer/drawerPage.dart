@@ -50,29 +50,29 @@ class _drawerPageState extends State<drawerPage> {
               Navigator.pushNamed(context, '/RoutePage');
             }),
         new Divider(),
-        new ListTile(
-            title: new Text('数据存储'),
-            trailing: new Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/DataPage');
-            }),
-        new Divider(),
-        new ListTile(
-            title: new Text('Gesture'),
-            trailing: new Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/GesturePage');
-            }),
-        new Divider(),
-        new ListTile(
-            title: new Text('加载图片'),
-            trailing: new Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/LoadImgPage');
-            }),
+        // new ListTile(
+        //     title: new Text('数据存储'),
+        //     trailing: new Icon(Icons.arrow_right),
+        //     onTap: () {
+        //       Navigator.of(context).pop();
+        //       Navigator.pushNamed(context, '/DataPage');
+        //     }),
+        // new Divider(),
+        // new ListTile(
+        //     title: new Text('Gesture'),
+        //     trailing: new Icon(Icons.arrow_right),
+        //     onTap: () {
+        //       Navigator.of(context).pop();
+        //       Navigator.pushNamed(context, '/GesturePage');
+        //     }),
+        // new Divider(),
+        // new ListTile( 
+        //     title: new Text('加载图片'),
+        //     trailing: new Icon(Icons.arrow_right),
+        //     onTap: () {
+        //       Navigator.of(context).pop();
+        //       Navigator.pushNamed(context, '/LoadImgPage');
+        //     }),
       
       ],
     )

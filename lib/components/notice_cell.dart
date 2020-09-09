@@ -6,10 +6,12 @@ class noticeCell extends StatefulWidget {
   final String text;
   final String subtitle;
   final Widget time;
+  final int isread;
   final Function onTap;
   const noticeCell({
     Key key,
     this.text,
+    this.isread,
     this.subtitle,
     this.time,
     this.onTap,
@@ -30,11 +32,23 @@ class _noticeCellState extends State<noticeCell> {
             )
            ),
           child:  ListTile(
-          leading: Image.asset(
-            'lib/assets/images/icon_gg.png',
-            width: Adapt.px(100),
-            height: Adapt.px(100),
-            fit: BoxFit.cover,
+          leading: Stack(
+            children: [
+              Image.asset(
+                'lib/assets/images/icon_gg.png',
+                width: Adapt.px(100),
+                height: Adapt.px(100),
+                fit: BoxFit.cover,
+              ),
+              widget.isread==1?Positioned(
+                left: Adapt.px(70),
+                child:ClipOval(child: Container(
+                  color: Colors.red,
+                  width: Adapt.px(20),
+                  height: Adapt.px(20),
+                ),)
+              ):Text('')
+            ],
           ),
           title:Text(
             widget.text??'请输入组件标题',
@@ -49,7 +63,10 @@ class _noticeCellState extends State<noticeCell> {
           trailing:widget.time?? Text('2000-01-01'),
         ),
     ),
-    onTap: widget.onTap,
+    onTap: ()=> {
+      print('单击')
+    },
+    onLongPress: () => print("LongPress"), //长按
     );
   }
 }

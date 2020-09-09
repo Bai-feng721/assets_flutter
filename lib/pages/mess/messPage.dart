@@ -23,9 +23,14 @@ class _MessPageState extends State<MessPage> {
               print("点击了消息组件");
             } ,
           ),
-          noticeCell(),
-          noticeCell(),
-          noticeCell(),
+          noticeCell(
+            //isread判断未读已读，1未读
+            isread: 1,
+          ),
+          noticeCell(          ),
+          noticeCell(
+            isread: 1,
+          ),
           noticeCell(),
           noticeCell(),
           noticeCell(),

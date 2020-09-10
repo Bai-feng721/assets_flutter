@@ -1,4 +1,6 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:myapp/units/Adapt.dart';
 
 class addTake extends StatefulWidget {
@@ -8,6 +10,7 @@ class addTake extends StatefulWidget {
 
 class _addTakeState extends State<addTake> {
   List formList;
+  String barcode = "";
     initState() {
       super.initState();
         formList = [
@@ -15,14 +18,7 @@ class _addTakeState extends State<addTake> {
             {"image": 'lib/assets/images/pic.png',"title": '所有人'},
             {"image": 'lib/assets/images/pic.png',"title": '号牌颜色'},
             {"image": 'lib/assets/images/pic.png',"title": '车牌号'},
-            {"image": 'lib/assets/images/pic.png',"title": '所有人'},
-            {"image": 'lib/assets/images/pic.png',"title": '号牌颜色'},
-            {"image": 'lib/assets/images/pic.png',"title": '车牌号'},
-            {"image": 'lib/assets/images/pic.png',"title": '所有人'},
-            {"image": 'lib/assets/images/pic.png',"title": '号牌颜色'},
-            {"image": 'lib/assets/images/pic.png',"title": '车牌号'},
-            {"image": 'lib/assets/images/pic.png',"title": '所有人'},
-            {"image": 'lib/assets/images/pic.png',"title": '号牌颜色'},
+            
         ];
     }
 
@@ -71,7 +67,7 @@ class _addTakeState extends State<addTake> {
               child: Column(children: [
                 ListTile(
                   leading: Icon(Icons.assignment,color: Color(0xff4859ff),),
-                  title: Text('资产盘点列表( )'),
+                  title: Text('资产盘点列表(${formList.length} )'),
                   // trailing: Text('2020-2-2'),
                 ),
                 Divider()
@@ -80,6 +76,7 @@ class _addTakeState extends State<addTake> {
             Flexible(child: 
               buildCell()
             ,),
+            Text(barcode),
             Container(
               padding: EdgeInsets.all(10),
               width: Adapt.px(600),
@@ -89,7 +86,10 @@ class _addTakeState extends State<addTake> {
                 icon: Icon(Icons.fullscreen),
                 label: Text("扫描盘点"),
                 onPressed:(){
-
+                  scan();
+                  setState(() {
+                    formList.add(barcode);
+                  });
                 },
               ),
             )
@@ -98,4 +98,35 @@ class _addTakeState extends State<addTake> {
       );
     
   }
+
+   //扫码
+Future scan() async {
+  try {
+    // 此处为扫码结果，barcode为二维码的内容
+    String barcode = await BarcodeScanner.scan();
+    setState(() => this.barcode = barcode);
+    print('扫码结果: '+barcode);
+    
+
+  } on PlatformException catch (e) {
+    if (e.code == BarcodeScanner.CameraAccessDenied) {
+      // 未授予APP相机权限
+       this.barcode = '未授予APP相机权限';
+      print('未授予APP相机权限');
+    } else {
+      // 扫码错误
+       this.barcode = '扫码错误: $e';
+      print('扫码错误: $e');
+    }
+  } on FormatException{
+    // 进入扫码页面后未扫码就返回
+       this.barcode = '进入扫码页面后未扫码就返回';
+    print('进入扫码页面后未扫码就返回');
+  } catch (e) {
+    // 扫码错误
+       this.barcode = '扫码错误: $e';
+    print('扫码错误: $e');
+  }
+}
+
 }

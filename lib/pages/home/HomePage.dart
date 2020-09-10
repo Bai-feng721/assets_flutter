@@ -1,45 +1,34 @@
 import 'dart:io';
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/pages/home/drawer/drawerPage.dart';
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/services.dart';
 
 
-class HomeContent extends StatelessWidget {
-  Future scan() async {
-  try {
-    // 此处为扫码结果，barcode为二维码的内容
-    String barcode = await BarcodeScanner.scan();
-    print('扫码结果: '+barcode);
-  } on PlatformException catch (e) {
-    if (e.code == BarcodeScanner.CameraAccessDenied) {
-      // 未授予APP相机权限
-      print('未授予APP相机权限');
-    } else {
-      // 扫码错误
-      print('扫码错误: $e');
-    }
-  } on FormatException{
-    // 进入扫码页面后未扫码就返回
-    print('进入扫码页面后未扫码就返回');
-  } catch (e) {
-    // 扫码错误
-    print('扫码错误: $e');
-  }
-}
+class HomeContent extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
+  _HomeContentState createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
+   String barcode = "";
+
+  @override
+  initState() {
+    super.initState();
+  }
+  @override
+    Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        title: Text('资产管理'),
+        // title: Text('资产管理'),
+         title:  Text((barcode)),
+        
         actions: <Widget>[ //导航栏右侧菜单
           IconButton(
             icon: Icon(Icons.qr_code_scanner), 
-            onPressed: () {
-              //摄像头
-              scan();
-            }
+            onPressed: scan,
           ),
         ],
       ),
@@ -261,4 +250,36 @@ class HomeContent extends StatelessWidget {
     ));
     
   }
+  //扫码
+Future scan() async {
+  try {
+    // 此处为扫码结果，barcode为二维码的内容
+    String barcode = await BarcodeScanner.scan();
+    setState(() => this.barcode = barcode);
+    print('扫码结果: '+barcode);
+  } on PlatformException catch (e) {
+    if (e.code == BarcodeScanner.CameraAccessDenied) {
+      // 未授予APP相机权限
+       this.barcode = '未授予APP相机权限';
+      print('未授予APP相机权限');
+    } else {
+      // 扫码错误
+       this.barcode = '扫码错误: $e';
+      print('扫码错误: $e');
+    }
+  } on FormatException{
+    // 进入扫码页面后未扫码就返回
+       this.barcode = '进入扫码页面后未扫码就返回';
+    print('进入扫码页面后未扫码就返回');
+  } catch (e) {
+    // 扫码错误
+       this.barcode = '扫码错误: $e';
+    print('扫码错误: $e');
+  }
 }
+
+
+}
+
+
+

@@ -6,9 +6,11 @@ class scrapCell extends StatefulWidget {
   final String name;
   final String code;
   final Function onTap;
+  final int id;
   const scrapCell({
     Key key,
     this.onTap,
+    this.id,
     this.image,
     this.name,
     this.code
@@ -32,8 +34,8 @@ class _scrapCellState extends State<scrapCell> {
             // border: Border.all(color: Colors.black12,width: Adapt.px(20))///边框颜色、宽
       ),
       child: ListTile(
-        leading: Image.asset(
-          widget.image??'lib/assets/images/computer.png',
+        leading: Image.network(
+          widget.image,
           width: Adapt.px(150),
           fit:BoxFit.cover ,
         ),
@@ -48,7 +50,7 @@ class _scrapCellState extends State<scrapCell> {
             child: Text("报废",style: TextStyle(color: Colors.white),),
             color: Color(0xff4859ff),
             onPressed: () {
-              Navigator.pushNamed(context, '/scrapApply',arguments: {'code':this.widget.code});
+              Navigator.pushNamed(context, '/scrapApply',arguments: {'code':this.widget.code,'id':this.widget.id});
             },
           ),
            )

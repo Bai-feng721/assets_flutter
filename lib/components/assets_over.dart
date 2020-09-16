@@ -6,8 +6,10 @@ class overCell extends StatefulWidget {
   final String name;
   final String code;
   final Function onTap;
+  final int id;
   const overCell({
     Key key,
+    this.id,
     this.onTap,
     this.image,
     this.name,
@@ -32,8 +34,8 @@ class _overCellState extends State<overCell> {
             // border: Border.all(color: Colors.black12,width: Adapt.px(20))///边框颜色、宽
       ),
       child: ListTile(
-        leading: Image.asset(
-          widget.image??'lib/assets/images/computer.png',
+        leading: Image.network(
+          widget.image,
           width: Adapt.px(150),
           fit:BoxFit.cover ,
         ),
@@ -48,7 +50,7 @@ class _overCellState extends State<overCell> {
             child: Text("移交",style: TextStyle(color: Colors.white),),
             color: Color(0xff4859ff),
             onPressed: () {
-              Navigator.pushNamed(context, '/overApply',arguments: {});
+              Navigator.pushNamed(context, '/overApply',arguments: {'code':this.widget.code,'id':this.widget.id});
             },
           ),
            )

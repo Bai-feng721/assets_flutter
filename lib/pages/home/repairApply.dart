@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
-
+import 'package:myapp/units/Toast.dart';
+import 'package:myapp/http/api.dart';
+import 'package:myapp/http/http.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class repairApply extends StatefulWidget {
@@ -15,7 +18,6 @@ class _repairApplyState extends State<repairApply> {
   Map arguments;
   _repairApplyState({this.arguments});
 
-  TextEditingController _personController = new TextEditingController();
   TextEditingController _assetsController = new TextEditingController();
   TextEditingController _dateController = new TextEditingController();
   TextEditingController _contentController = new TextEditingController();
@@ -24,12 +26,30 @@ class _repairApplyState extends State<repairApply> {
  
   ///动态widget回执完成后回自动的调用这个方法,可以在这里做初始化的一些工作
   @override
+
   void initState() {
     super.initState();    
     //2:TextEditingController构造方法里面有个text可选参数,所以在初始的地方调用方法赋值
     _assetsController.text="${arguments['code']}";
     print(this._assetsController);
   }
+  _repair() async{
+    Map<String, dynamic> data={
+      'assetsId':'${arguments['id']}',
+      'reason': _contentController.text,
+    };
+    var data1 = json.encode(data);
+    var response = await HttpUtil().post(Api.REPAIR, data:data1,token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYyMjU0NzI1LTNmMTktNGRkOC04OGIwLWRkMGQxZTJiM2ZlOCJ9.ASxyymMhMQG_e40i9n3SL2ROvUTAErVTPFSGuWZrstsquQbdFgqY6uJhJ6BvCugSqUvPwR1aU9XxZMGKJn-eSw');
+    print(response.data);
+    if(response.data['code']==200){
+      Toast.toast(context,msg:response.data['msg']);
+      Navigator.of(context).pop();
+    }else{
+      Toast.toast(context,msg:response.data['msg']);
+    }
+  }
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('资产维修申请'),),
@@ -39,21 +59,7 @@ class _repairApplyState extends State<repairApply> {
           key: _formKey, //设置globalKey，用于后面获取FormState
           autovalidate: true, //开启自动校验
           child: ListView(children: [
-            TextFormField(
-                  autofocus: true,
-                  controller: _personController,
-                  decoration: InputDecoration(
-                      // labelText: "用户名",
-                      hintText: "请输入报修人",
-                      icon:Text('报修人员',style: TextStyle(fontSize: Adapt.px(36)),)
-                  ),
-                  // 校验用户名
-                  validator: (v) {
-                    return v
-                        .trim()
-                        .length > 0 ? null : "报修人不能为空";
-                  }
-              ),
+
               TextFormField(
                   autofocus: true,
                   controller: _assetsController,
@@ -112,34 +118,19 @@ class _repairApplyState extends State<repairApply> {
                   }
 
               ),
-              // TextFormField(
-              //     autofocus: true,
-              //     // controller: _unameController,
-              //     decoration: InputDecoration(
-              //         // labelText: "用户名",
-              //         hintText: "请输入维修费用",
-              //         icon: Text('维修费用',style: TextStyle(fontSize: Adapt.px(36)),)
-              //     ),
-              //     // 校验用户名
-              //     validator: (v) {
-              //       return v
-              //           .trim()
-              //           .length > 0 ? null : "维修费用不能为空";
-              //     }
-              // ),
               TextFormField(
                   autofocus: true,
                   controller: _contentController,
                   decoration: InputDecoration(
                       // labelText: "用户名",
-                      hintText: "请输入维修内容",
-                      icon: Text('维修内容',style: TextStyle(fontSize: Adapt.px(36)),)
+                      hintText: "请输入备注",
+                      icon: Text('维修备注',style: TextStyle(fontSize: Adapt.px(36)),)
                   ),
                   // 校验用户名
                   validator: (v) {
                     return v
                         .trim()
-                        .length > 0 ? null : "维修内容不能为空";
+                        .length > 0 ? null : "维修备注不能为空";
                   }
               ),
               //登录
@@ -155,15 +146,17 @@ class _repairApplyState extends State<repairApply> {
                             .of(context)
                             .primaryColor,
                         textColor: Colors.white,
-                        onPressed: () {
+                        onPressed: (){
                           //在这里不能通过此方式获取FormState，context不对
                           //print(Form.of(context));
-
                           // 通过_formKey.currentState 获取FormState后，
                           // 调用validate()方法校验用户名密码是否合法，校验
                           // 通过后再提交数据。 
                           if((_formKey.currentState as FormState).validate()){
                             //验证通过提交数据
+                            _repair();
+                          }else{
+                            Toast.toast(context,msg:'请完善信息');
                           }
                         },
                       ),

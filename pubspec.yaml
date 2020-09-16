@@ -33,7 +33,9 @@ dependencies:
   barcode_scan: ^1.0.0
   dio: ^3.0.9
   dio_cookie_manager: ^1.0.0
-  
+  shared_preferences: ^0.5.1
+  intl: ^0.16.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

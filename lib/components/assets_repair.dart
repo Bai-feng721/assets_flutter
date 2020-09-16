@@ -6,9 +6,11 @@ class repairCell extends StatefulWidget {
   final String name;
   final String code;
   final Function onTap;
+  final int id;
   const repairCell({
     Key key,
     this.onTap,
+    this.id,
     this.image,
     this.name,
     this.code
@@ -32,8 +34,8 @@ class _repairCellState extends State<repairCell> {
             // border: Border.all(color: Colors.black12,width: Adapt.px(20))///边框颜色、宽
       ),
       child: ListTile(
-        leading: Image.asset(
-          widget.image??'lib/assets/images/computer.png',
+        leading: Image.network(
+          widget.image,
           width: Adapt.px(150),
           fit:BoxFit.cover ,
         ),
@@ -48,7 +50,7 @@ class _repairCellState extends State<repairCell> {
             child: Text("维修",style: TextStyle(color: Colors.white),),
             color: Color(0xff4859ff),
             onPressed: () {
-              Navigator.pushNamed(context, '/repairApply',arguments: {'code':this.widget.code});
+              Navigator.pushNamed(context, '/repairApply',arguments: {'code':this.widget.code,'id':this.widget.id});
             },
           ),
            )

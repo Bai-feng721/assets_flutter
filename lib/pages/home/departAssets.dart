@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/components/assets_cell.dart';
+import 'package:myapp/http/api.dart';
+import 'package:myapp/http/http.dart';
 
 class departAssets extends StatefulWidget {
   final arguments;
@@ -10,27 +12,38 @@ class departAssets extends StatefulWidget {
 }
 
 class _departAssetsState extends State<departAssets> {
+  List assetsList=[];
+  @override
+  void initState() {
+    super.initState();
+    this._getList();
+  }
+  _getList() async{
+    var response = await HttpUtil().get(Api.DEPARTASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImI2ZmE4YzI0LWUyZjQtNDA5NS1iZTAwLWU0NDY1OWNjODY4NyJ9.m7QBCX3BYMtkzzA-TYYMk8OJCQtzpKdsaab7RQfIr13Hz-qX3cJkpbdFUQh751t88mKQIGlVO1iPur6H9-qDMQ');
+    setState(() {
+      this.assetsList=response.data["rows"];
+      print(this.assetsList);
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('部门资产'),),
       body: ListView(
-        // decoration: BoxDecoration( color: Colors.black12),
-        children: [
-          assetsCell(
-            name:'联想笔记本电脑',
-            code:'dewdsaa1121cacsacacaa2w',
-          ),
-          assetsCell(
-            name:'打印机',
-            code:'dewdsaa1121cacsacacaa2w',
-            image: 'lib/assets/images/pic.png',
-          ),
-           assetsCell(
-            name:'手机',
-            code:'dewdsaa1121cacsacacaa2w',
-          )
-        ],
+        children: this.assetsList.map((item){
+          return assetsCell(
+            name: item['name'],
+            code: item['code'],
+            image:Api.BASE_URL+ item['avator'],
+            id: item['id'],
+            //隐藏底部按钮
+            isshow: '0',
+            cateId: item['cateId'],
+            status: item['status'],
+          );
+        }).toList(),
       ),
     );
   }

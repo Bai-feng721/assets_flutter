@@ -4,6 +4,8 @@ import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/pages/home/drawer/drawerPage.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:myapp/http/api.dart';
+import 'package:myapp/http/http.dart';
 
 
 class HomeContent extends StatefulWidget {
@@ -13,11 +15,30 @@ class HomeContent extends StatefulWidget {
 
 class _HomeContentState extends State<HomeContent> {
    String barcode = "";
+   List assetsList=[];
+   List departList=[];
+   @override
+   void initState() {
+     super.initState();
+     this._getMyList();
+     this._getDepartList();
+   }
+   _getMyList() async{
+     var response = await HttpUtil().get(Api.MYASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjVlMWRlZjM2LWZmMGMtNGUwNy1hZWMyLWMzMjc2NjUyN2ZiOSJ9.MLytAwDRea8HGTXwSp2etlEOtLPRfTANQVibchqN5p_qjP2kmPURj59_Mgk8T_FQRKQ3OmG_qDCQ1ZgsvYcXDw');
+     setState(() {
+       this.assetsList=response.data["rows"];
+       print(this.assetsList.length.toString());
+     });
+   }
+   //部门资产
+   _getDepartList() async{
+     var response = await HttpUtil().get(Api.DEPARTASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjVlMWRlZjM2LWZmMGMtNGUwNy1hZWMyLWMzMjc2NjUyN2ZiOSJ9.MLytAwDRea8HGTXwSp2etlEOtLPRfTANQVibchqN5p_qjP2kmPURj59_Mgk8T_FQRKQ3OmG_qDCQ1ZgsvYcXDw');
+     setState(() {
+       this.departList=response.data["rows"];
+       print(this.departList.length.toString());
+     });
 
-  @override
-  initState() {
-    super.initState();
-  }
+   }
   @override
     Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +80,7 @@ class _HomeContentState extends State<HomeContent> {
                     style: TextStyle(fontSize: Adapt.px(40), color: Colors.white),
                   ),
                   Text(
-                    '23',
+                    (this.assetsList.length+this.departList.length).toString(),
                     style: TextStyle(fontSize: Adapt.px(40), color: Colors.white),
                   ),
                 ],)
@@ -92,13 +113,13 @@ class _HomeContentState extends State<HomeContent> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                           Text('我的资产',style: TextStyle(fontSize: Adapt.px(32))),
-                          Text('88',style: TextStyle(fontSize: Adapt.px(36),color: Colors.indigo[400])),
+                          Text(this.assetsList.length.toString(),style: TextStyle(fontSize: Adapt.px(36),color: Colors.indigo[400])),
                         ]),
                         onTap: (){
                           // Navigator.of(context).push(
                           //   MaterialPageRoute(builder: (context)=>myAssets())
                           // );
-                          Navigator.pushNamed(context, '/myAssets', arguments: {"ceshi": 123});
+                          Navigator.pushNamed(context, '/myAssets', arguments: {});
                         },
                         ),
                         GestureDetector(
@@ -107,7 +128,7 @@ class _HomeContentState extends State<HomeContent> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                           Text('部门资产',style: TextStyle(fontSize: Adapt.px(32))),
-                          Text('88',style: TextStyle(fontSize: Adapt.px(36),color: Colors.indigo[400])),
+                          Text(this.departList.length.toString(),style: TextStyle(fontSize: Adapt.px(36),color: Colors.indigo[400])),
                         ]),
                         onTap: (){
                            Navigator.pushNamed(context, '/departAssets', arguments: {});

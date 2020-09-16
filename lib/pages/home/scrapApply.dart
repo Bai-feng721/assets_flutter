@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
-
+import 'package:myapp/units/Toast.dart';
+import 'package:myapp/http/api.dart';
+import 'package:myapp/http/http.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class scrapApply extends StatefulWidget {
@@ -29,6 +32,22 @@ class _scrapApplyState extends State<scrapApply> {
     super.initState();
     _assetsController.text='${arguments['code']}';
   }
+  _scrap() async{
+    Map<String, dynamic> data={
+      'assetsId':'${arguments['id']}',
+      'reason': _contentController.text,
+    };
+    var data1 = json.encode(data);
+    var response = await HttpUtil().post(Api.SCRAP, data:data1,token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYyMjU0NzI1LTNmMTktNGRkOC04OGIwLWRkMGQxZTJiM2ZlOCJ9.ASxyymMhMQG_e40i9n3SL2ROvUTAErVTPFSGuWZrstsquQbdFgqY6uJhJ6BvCugSqUvPwR1aU9XxZMGKJn-eSw');
+    print(response.data);
+    if(response.data['code']==200){
+      Toast.toast(context,msg:response.data['msg']);
+      Navigator.of(context).pop();
+    }else{
+      Toast.toast(context,msg:response.data['msg']);
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('资产报废申请'),),
@@ -38,21 +57,7 @@ class _scrapApplyState extends State<scrapApply> {
           key: _formKey, //设置globalKey，用于后面获取FormState
           autovalidate: true, //开启自动校验
           child: ListView(children: [
-            TextFormField(
-                  autofocus: true,
-                  controller: _personController,
-                  decoration: InputDecoration(
-                      // labelText: "用户名",
-                      hintText: "请输入申请人",
-                      icon:Text('申请人员',style: TextStyle(fontSize: Adapt.px(36)),)
-                  ),
-                  // 校验用户名
-                  validator: (v) {
-                    return v
-                        .trim()
-                        .length > 0 ? null : "申请人不能为空";
-                  }
-              ),
+
               TextFormField(
                   autofocus: true,
                   controller: _assetsController,
@@ -149,6 +154,9 @@ class _scrapApplyState extends State<scrapApply> {
                           // 通过后再提交数据。 
                           if((_formKey.currentState as FormState).validate()){
                             //验证通过提交数据
+                            _scrap();
+                          }else{
+                            Toast.toast(context,msg:'请完善信息');
                           }
                         },
                       ),

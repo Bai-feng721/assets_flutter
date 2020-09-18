@@ -41,7 +41,7 @@ class _loginState extends State<login> {
     if(response.data['code'].toString()=='200'){
       print('登陆成功');
       save();
-      // Navigator.pushNamed(context, '/');
+      Navigator.pushNamed(context, '/');
     }else{
       Toast.toast(context,msg: response.data['msg']);
       print('登陆失败');
@@ -150,14 +150,14 @@ class _loginState extends State<login> {
             // print(_unameController.text);
           },
         ),
-        RaisedButton(
-            color: Colors.greenAccent,
-            child: Text("获取"),
-            onPressed: () {
-              getToken().then((result) {
-                // print("接口返回的数据是:${result}");
-              });
-            }),
+        // RaisedButton(
+        //     color: Colors.greenAccent,
+        //     child: Text("获取"),
+        //     onPressed: () {
+        //       getToken().then((result) {
+        //         // print("接口返回的数据是:${result}");
+        //       });
+        //     }),
       ],
     ));
   }

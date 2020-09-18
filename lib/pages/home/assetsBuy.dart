@@ -28,7 +28,6 @@ class _assetsBuyState extends State<assetsBuy> {
           assetsCell(
             name:'打印机',
             code:'dewdsaa1121cacsacacaa2w',
-            image: 'lib/assets/images/pic.png',
             isshow: '1',
 
           ),
@@ -41,7 +40,6 @@ class _assetsBuyState extends State<assetsBuy> {
            assetsCell(
             name:'打印机',
             code:'dewdsaa1121cacsacacaa2w',
-            image: 'lib/assets/images/pic.png',
             isshow: '1',
 
           ),

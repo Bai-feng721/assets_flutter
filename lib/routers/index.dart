@@ -16,6 +16,8 @@ import '../pages/home/repairApply.dart';
 import '../pages/home/buyApply.dart';
 import '../pages/home/scrapApply.dart';
 import '../pages/home/overApply.dart';
+import '../pages/home/applyRecord.dart';
+import '../pages/home/recordDetail.dart';
 import '../pages/login/login.dart';
 import '../pages/login/rePassWord.dart';
 import '../pages/mess/newDetail.dart';
@@ -34,7 +36,8 @@ final routes={
       '/scrapApply':(context,{arguments})=>scrapApply(arguments:arguments),
       '/assetsOver':(context,{arguments})=>assetsOver(),
       '/overApply':(context,{arguments})=>overApply(arguments:arguments),
-      '/detail':(context,{arguments})=>asstesDetail(arguments:arguments),
+      '/applyRecord':(context,{arguments})=>applyRecord(),
+      '/recordDetail':(context,{arguments})=>recordDetail(arguments:arguments),
       '/myAssets':(context,{arguments})=>myAssets(),
       '/departAssets':(context,{arguments})=>departAssets(),
       '/take':(context,{arguments})=>assetsTake(arguments:arguments),

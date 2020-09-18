@@ -7,8 +7,8 @@ class Api {
   //登录
   static const String LOGIN = "/app/login";
 
-  //退出登录
-  static const String LOGOUT = "";
+  //获取用户信息
+  static const String GETINFO = "/getInfo";
 
   //我的资产
   static const String MYASSETS = "/myAssets/list";
@@ -51,5 +51,13 @@ class Api {
 
   //通知详情
   static const String NOTICEDETAIL = "/announcement/findNoticeDetails";
+
+  //申请记录
+  static const String APPLYRECORD = "/myAssetsApi/applicationList";
+
+  //申请记录详情
+  static const String RECORDDETAIL = "/myAssetsApi/applicationItemList";
+
+
 
 }

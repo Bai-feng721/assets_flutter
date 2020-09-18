@@ -249,20 +249,25 @@ class _HomeContentState extends State<HomeContent> {
                             Navigator.pushNamed(context, '/assetsRepair');
                           },
                        ),
-                       Container(
-                      padding: EdgeInsets.all(15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                          Image.asset(
-                            'lib/assets/images/icon_jy.png',
-                            width: Adapt.px(60),
-                            height: Adapt.px(60),
-                            fit: BoxFit.cover,
-                          ),
-                          Text('申请记录', style: TextStyle(fontSize: Adapt.px(32) ))
-                        ],
-                      )),
+                       GestureDetector(
+                         child: Container(
+                             padding: EdgeInsets.all(15),
+                             child: Column(
+                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                               children: [
+                                 Image.asset(
+                                   'lib/assets/images/icon_jy.png',
+                                   width: Adapt.px(60),
+                                   height: Adapt.px(60),
+                                   fit: BoxFit.cover,
+                                 ),
+                                 Text('申请记录', style: TextStyle(fontSize: Adapt.px(32) ))
+                               ],
+                             )),
+                         onTap: (){
+                           Navigator.pushNamed(context, '/applyRecord');
+                         },
+                       )
                 ]
              )
           )

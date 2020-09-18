@@ -37,4 +37,19 @@ class Api {
   //资产报废申请
   static const String SCRAP = "/repairApi/scrapAdd";
 
+  //移交类型字典
+  static const String ASSET_TRANSFER_TYPE = "/findData/selectGetName";
+
+  //消息列表
+  static const String MESS = "/message/list";
+
+  //消息详情
+  static const String MESSDETAIL = "/message/findMessageDetails";
+
+  //通知公告
+  static const String NOTICE = "/announcement/list";
+
+  //通知详情
+  static const String NOTICEDETAIL = "/announcement/findNoticeDetails";
+
 }

@@ -21,7 +21,7 @@ class _myAssetsState extends State<myAssets> {
     this._getList();
   }
   _getList() async{
-    var response = await HttpUtil().get(Api.MYASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjVlMWRlZjM2LWZmMGMtNGUwNy1hZWMyLWMzMjc2NjUyN2ZiOSJ9.MLytAwDRea8HGTXwSp2etlEOtLPRfTANQVibchqN5p_qjP2kmPURj59_Mgk8T_FQRKQ3OmG_qDCQ1ZgsvYcXDw');
+    var response = await HttpUtil().get(Api.MYASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU2ZGI5NWU1LTE2ZjMtNGFlYS1iN2ViLTJiNjRiM2Q3YjA2ZCJ9.ROMYloJLzbI8jPRXKkkhq-fojYIOosCpQ5eRT6Nz9vidf_lw2qyhz4ce4SGPIcDiJMooComv7mSWvOB5yVyKbw');
     setState(() {
       this.assetsList=response.data["rows"];
       print(this.assetsList);

@@ -38,7 +38,7 @@ class _assetsCellState extends State<assetsCell> {
     this._getStatus();
   }
   _getStatus() async{
-    var res = await HttpUtil().get(Api.ASSETSSTATUS+'?type=asset_status&value=${widget.status}', token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImI2ZmE4YzI0LWUyZjQtNDA5NS1iZTAwLWU0NDY1OWNjODY4NyJ9.m7QBCX3BYMtkzzA-TYYMk8OJCQtzpKdsaab7RQfIr13Hz-qX3cJkpbdFUQh751t88mKQIGlVO1iPur6H9-qDMQ');
+    var res = await HttpUtil().get(Api.ASSETSSTATUS+'?type=asset_status&value=${widget.status}', token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
     setState(() {
       this.assetsStatus=res.data["data"];
       print(this.assetsStatus);

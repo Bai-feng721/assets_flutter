@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
 
 
-class noticeCell extends StatefulWidget {
+class messCell extends StatefulWidget {
   final String text;
   final String subtitle;
   final Widget time;
   final String isread;
   final int id;
   final Function onTap;
-  const noticeCell({
+  const messCell({
     Key key,
     this.text,
     this.id,
@@ -19,10 +19,10 @@ class noticeCell extends StatefulWidget {
     this.onTap,
   }) : super(key: key);
   @override
-  _noticeCellState createState() => _noticeCellState();
+  _messCellState createState() => _messCellState();
 }
 
-class _noticeCellState extends State<noticeCell> {
+class _messCellState extends State<messCell> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -42,7 +42,7 @@ class _noticeCellState extends State<noticeCell> {
                 height: Adapt.px(80),
                 fit: BoxFit.cover,
               ),
-              widget.isread==1?Positioned(
+              widget.isread=='1'?Positioned(
                 left: Adapt.px(60),
                 child:ClipOval(child: Container(
                   color: Colors.red,
@@ -66,7 +66,7 @@ class _noticeCellState extends State<noticeCell> {
         ),
     ),
     onTap: ()=> {
-      Navigator.pushNamed(context, '/noticeDetail',arguments: {'id':widget.id})
+      Navigator.pushNamed(context, '/newDetail',arguments: {'id':widget.id})
     },
     onLongPress: () => print("LongPress"), //长按
     );

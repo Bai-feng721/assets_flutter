@@ -28,13 +28,13 @@ class _asstesDetailState extends State<asstesDetail> {
 
  //获取资产详情
  _getDetail() async{
-   var response = await HttpUtil().post(Api.ASSETSDetail+'?id=${arguments['id']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImI2ZmE4YzI0LWUyZjQtNDA5NS1iZTAwLWU0NDY1OWNjODY4NyJ9.m7QBCX3BYMtkzzA-TYYMk8OJCQtzpKdsaab7RQfIr13Hz-qX3cJkpbdFUQh751t88mKQIGlVO1iPur6H9-qDMQ');
+   var response = await HttpUtil().post(Api.ASSETSDetail+'?id=${arguments['id']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
    setState(() {
      this.detailList=response.data['data'];
      print(this.detailList);
    });
    //查询存放地点
-     var res = await HttpUtil().post(Api.ASSETSADRESS+'?id=${this.detailList['storageId']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImI2ZmE4YzI0LWUyZjQtNDA5NS1iZTAwLWU0NDY1OWNjODY4NyJ9.m7QBCX3BYMtkzzA-TYYMk8OJCQtzpKdsaab7RQfIr13Hz-qX3cJkpbdFUQh751t88mKQIGlVO1iPur6H9-qDMQ');
+     var res = await HttpUtil().post(Api.ASSETSADRESS+'?id=${this.detailList['storageId']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
      setState(() {
        this.assetsAddress=res.data['data'];
        print(this.assetsAddress);
@@ -42,7 +42,7 @@ class _asstesDetailState extends State<asstesDetail> {
  }
  //查询资产类型
  _findCate() async{
-   var response = await HttpUtil().post(Api.ASSETSCATE+'?id=${arguments['cateId']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImI2ZmE4YzI0LWUyZjQtNDA5NS1iZTAwLWU0NDY1OWNjODY4NyJ9.m7QBCX3BYMtkzzA-TYYMk8OJCQtzpKdsaab7RQfIr13Hz-qX3cJkpbdFUQh751t88mKQIGlVO1iPur6H9-qDMQ');
+   var response = await HttpUtil().post(Api.ASSETSCATE+'?id=${arguments['cateId']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
    setState(() {
      this.assetsCate=response.data['data'];
      // print(this.assetsCate);

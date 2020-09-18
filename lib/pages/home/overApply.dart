@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
+// import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
 import 'package:myapp/units/Toast.dart';
@@ -29,15 +31,21 @@ class _overApplyState extends State<overApply> {
     super.initState();
     //2:TextEditingController构造方法里面有个text可选参数,所以在初始的地方调用方法赋值
     _assetsController.text="${arguments['code']}";
-    print(this._assetsController);
   }
+  //提交申请
   _over() async{
-    Map<String, dynamic> data={
-      'assetsId':'${arguments['id']}',
-      'reason': _contentController.text,
-    };
-    var data1 = json.encode(data);
-    var response = await HttpUtil().post(Api.ASSETSOVER, data:data1,token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYyMjU0NzI1LTNmMTktNGRkOC04OGIwLWRkMGQxZTJiM2ZlOCJ9.ASxyymMhMQG_e40i9n3SL2ROvUTAErVTPFSGuWZrstsquQbdFgqY6uJhJ6BvCugSqUvPwR1aU9XxZMGKJn-eSw');
+    // Map<String, dynamic> data={
+    //   'type':_selectType,
+    //   'id':'${arguments['id']}',
+    //   'remarks': _contentController.text,
+    // };
+    // var data1 = json.encode(data);
+    FormData formData = new FormData.fromMap({
+      'type':_selectType,
+      'id':'${arguments['id']}',
+      'remarks': _contentController.text,
+    });
+    var response = await HttpUtil().post(Api.ASSETSOVER, data:formData,token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU2ZGI5NWU1LTE2ZjMtNGFlYS1iN2ViLTJiNjRiM2Q3YjA2ZCJ9.ROMYloJLzbI8jPRXKkkhq-fojYIOosCpQ5eRT6Nz9vidf_lw2qyhz4ce4SGPIcDiJMooComv7mSWvOB5yVyKbw');
     print(response.data);
     if(response.data['code']==200){
       Toast.toast(context,msg:response.data['msg']);
@@ -56,21 +64,6 @@ class _overApplyState extends State<overApply> {
           key: _formKey, //设置globalKey，用于后面获取FormState
           autovalidate: true, //开启自动校验
           child: ListView(children: [
-            // TextFormField(
-            //       autofocus: true,
-            //       controller: _personController,
-            //       decoration: InputDecoration(
-            //           // labelText: "用户名",
-            //           hintText: "请选择移交类型",
-            //           icon:Text('移交类型',style: TextStyle(fontSize: Adapt.px(36)),)
-            //       ),
-            //       // 校验用户名
-            //       validator: (v) {
-            //         return v
-            //             .trim()
-            //             .length > 0 ? null : "移交类型不能为空";
-            //       }
-            //   ),
               Container(
               height: 35,
               width: MediaQuery.of(context).size.width - 140,
@@ -89,12 +82,12 @@ class _overApplyState extends State<overApply> {
                       child: new DropdownButton(
                         items: [
                           new DropdownMenuItem(
-                            child: new Text('同意',style: TextStyle(fontSize: Adapt.px(32)),),
-                            value: '同意',
+                            child: new Text('部门',style: TextStyle(fontSize: Adapt.px(32)),),
+                            value: '1',
                           ),
                           new DropdownMenuItem(
-                            child: new Text('拒绝',style: TextStyle(fontSize: Adapt.px(32)),),
-                            value: '拒绝',
+                            child: new Text('仓库',style: TextStyle(fontSize: Adapt.px(32)),),
+                            value: '2',
                           ),
                         ],
                         hint: new Text('请选择'),
@@ -117,7 +110,6 @@ class _overApplyState extends State<overApply> {
               ],)
           ),
               
-
               TextFormField(
                   autofocus: true,
                   controller: _dateController,

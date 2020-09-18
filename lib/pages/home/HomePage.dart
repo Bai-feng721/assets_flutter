@@ -24,7 +24,7 @@ class _HomeContentState extends State<HomeContent> {
      this._getDepartList();
    }
    _getMyList() async{
-     var response = await HttpUtil().get(Api.MYASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjVlMWRlZjM2LWZmMGMtNGUwNy1hZWMyLWMzMjc2NjUyN2ZiOSJ9.MLytAwDRea8HGTXwSp2etlEOtLPRfTANQVibchqN5p_qjP2kmPURj59_Mgk8T_FQRKQ3OmG_qDCQ1ZgsvYcXDw');
+     var response = await HttpUtil().get(Api.MYASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
      setState(() {
        this.assetsList=response.data["rows"];
        print(this.assetsList.length.toString());
@@ -32,7 +32,7 @@ class _HomeContentState extends State<HomeContent> {
    }
    //部门资产
    _getDepartList() async{
-     var response = await HttpUtil().get(Api.DEPARTASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjVlMWRlZjM2LWZmMGMtNGUwNy1hZWMyLWMzMjc2NjUyN2ZiOSJ9.MLytAwDRea8HGTXwSp2etlEOtLPRfTANQVibchqN5p_qjP2kmPURj59_Mgk8T_FQRKQ3OmG_qDCQ1ZgsvYcXDw');
+     var response = await HttpUtil().get(Api.DEPARTASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
      setState(() {
        this.departList=response.data["rows"];
        print(this.departList.length.toString());
@@ -160,7 +160,7 @@ class _HomeContentState extends State<HomeContent> {
                               height: Adapt.px(60),
                               fit: BoxFit.cover,
                             ),
-                            Text('资产采购', style: TextStyle(fontSize: Adapt.px(32) ))
+                            Text('资产云库', style: TextStyle(fontSize: Adapt.px(32) ))
                           ],
                          )
                        ),
@@ -260,7 +260,7 @@ class _HomeContentState extends State<HomeContent> {
                             height: Adapt.px(60),
                             fit: BoxFit.cover,
                           ),
-                          Text('资产借用', style: TextStyle(fontSize: Adapt.px(32) ))
+                          Text('申请记录', style: TextStyle(fontSize: Adapt.px(32) ))
                         ],
                       )),
                 ]

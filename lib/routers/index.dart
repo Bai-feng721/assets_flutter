@@ -18,6 +18,8 @@ import '../pages/home/scrapApply.dart';
 import '../pages/home/overApply.dart';
 import '../pages/login/login.dart';
 import '../pages/login/rePassWord.dart';
+import '../pages/mess/newDetail.dart';
+import '../pages/notice/noticeDetail.dart';
 
 
 final routes={
@@ -36,6 +38,8 @@ final routes={
       '/myAssets':(context,{arguments})=>myAssets(),
       '/departAssets':(context,{arguments})=>departAssets(),
       '/take':(context,{arguments})=>assetsTake(arguments:arguments),
+      '/newDetail':(context,{arguments})=>newDetail(arguments:arguments),
+      '/noticeDetail':(context,{arguments})=>noticeDetail(arguments:arguments),
       '/addTake':(context,{arguments})=>addTake(),
       '/login':(context)=>login(),
       '/repass':(context)=>rePassWord(),

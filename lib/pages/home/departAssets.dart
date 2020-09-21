@@ -19,7 +19,7 @@ class _departAssetsState extends State<departAssets> {
     this._getList();
   }
   _getList() async{
-    var response = await HttpUtil().get(Api.DEPARTASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
+    var response = await HttpUtil().get(Api.DEPARTASSETS);
     setState(() {
       this.assetsList=response.data["rows"];
       print(this.assetsList);

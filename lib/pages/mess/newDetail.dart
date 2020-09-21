@@ -23,7 +23,7 @@ class _newDetailState extends State<newDetail> {
   }
 
   _getMessDetail() async{
-    var response = await HttpUtil().post(Api.MESSDETAIL+'?id=${arguments['id']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjM5NWFlMzJjLWE4NjUtNGMzZi04YjMxLTU4YWZiYjFlMGE5ZSJ9.xGnyYswUOJl2BewIH7w9uDIiomCb3RfIiSCIeE3pa5H19KNReSeBwY71GOA8kA_QeO_Lu8fmh3q2cdy3207zMA');
+    var response = await HttpUtil().post(Api.MESSDETAIL+'?id=${arguments['id']}');
     setState(() {
       this.messDetail=response.data['data'];
       print(this.messDetail);
@@ -47,7 +47,7 @@ class _newDetailState extends State<newDetail> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
             Text('发送人：${messDetail['fromName']}',style: TextStyle(fontSize: Adapt.px(30))),
-            Text('时间：'+parseTime(messDetail['creationTime'], 'yy-MM-dd'),style: TextStyle(fontSize: Adapt.px(30)))
+            Text('时间：'+parseTime(messDetail['creationTime'], 'yy-MM-dd HH:mm:ss'),style: TextStyle(fontSize: Adapt.px(30)))
           ],),
           Divider(),
           Container(

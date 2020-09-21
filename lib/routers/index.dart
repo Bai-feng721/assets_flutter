@@ -22,10 +22,12 @@ import '../pages/login/login.dart';
 import '../pages/login/rePassWord.dart';
 import '../pages/mess/newDetail.dart';
 import '../pages/notice/noticeDetail.dart';
+// import '../pages/home/HomePage.dart;
 
 
 final routes={
       '/':(context)=>Tabs(),
+      // '/home':(context)=>HomeContent(),
       '/buy':(context,{arguments})=>assetsBuy(arguments:arguments),
       '/buyApply':(context,{arguments})=>buyApply(arguments:arguments),
       '/buyApproval':(context,{arguments})=>buyApproval(),
@@ -38,6 +40,7 @@ final routes={
       '/overApply':(context,{arguments})=>overApply(arguments:arguments),
       '/applyRecord':(context,{arguments})=>applyRecord(),
       '/recordDetail':(context,{arguments})=>recordDetail(arguments:arguments),
+      '/detail':(context,{arguments})=>asstesDetail(arguments:arguments),
       '/myAssets':(context,{arguments})=>myAssets(),
       '/departAssets':(context,{arguments})=>departAssets(),
       '/take':(context,{arguments})=>assetsTake(arguments:arguments),

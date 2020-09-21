@@ -28,13 +28,13 @@ class _asstesDetailState extends State<asstesDetail> {
 
  //获取资产详情
  _getDetail() async{
-   var response = await HttpUtil().post(Api.ASSETSDetail+'?id=${arguments['id']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
+   var response = await HttpUtil().post(Api.ASSETSDetail+'?id=${arguments['id']}');
    setState(() {
      this.detailList=response.data['data'];
      print(this.detailList);
    });
    //查询存放地点
-     var res = await HttpUtil().post(Api.ASSETSADRESS+'?id=${this.detailList['storageId']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
+     var res = await HttpUtil().post(Api.ASSETSADRESS+'?id=${this.detailList['storageId']}');
      setState(() {
        this.assetsAddress=res.data['data'];
        print(this.assetsAddress);
@@ -42,7 +42,7 @@ class _asstesDetailState extends State<asstesDetail> {
  }
  //查询资产类型
  _findCate() async{
-   var response = await HttpUtil().post(Api.ASSETSCATE+'?id=${arguments['cateId']}', token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
+   var response = await HttpUtil().post(Api.ASSETSCATE+'?id=${arguments['cateId']}');
    setState(() {
      this.assetsCate=response.data['data'];
      // print(this.assetsCate);
@@ -68,7 +68,7 @@ class _asstesDetailState extends State<asstesDetail> {
             //  ),
             ListTile(
                 leading: Image.network(
-                  Api.BASE_URL+this.detailList['avator'],
+                  Api.BASE_URL+(this.detailList['avator']??'http://assets.wangzhensh.cn/static/img/noImg.61c41a89.png'),
                   width: Adapt.px(150),
                   fit:BoxFit.cover ,
                 ),

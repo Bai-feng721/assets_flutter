@@ -19,7 +19,7 @@ class _NoticePageState extends State<NoticePage> {
     this._getList();
   }
   _getList() async{
-    var response = await HttpUtil().get(Api.NOTICE, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjM5NWFlMzJjLWE4NjUtNGMzZi04YjMxLTU4YWZiYjFlMGE5ZSJ9.xGnyYswUOJl2BewIH7w9uDIiomCb3RfIiSCIeE3pa5H19KNReSeBwY71GOA8kA_QeO_Lu8fmh3q2cdy3207zMA');
+    var response = await HttpUtil().get(Api.NOTICE);
 
     setState(() {
       this.noticeList=response.data["rows"];

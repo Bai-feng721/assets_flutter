@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/http/api.dart';
 import 'package:myapp/units/Adapt.dart';
 
 class scrapCell extends StatefulWidget {
@@ -35,7 +36,7 @@ class _scrapCellState extends State<scrapCell> {
       ),
       child: ListTile(
         leading: Image.network(
-          widget.image,
+          widget.image!='null'?Api.BASE_URL+widget.image:'http://assets.wangzhensh.cn/static/img/noImg.61c41a89.png',
           width: Adapt.px(150),
           fit:BoxFit.cover ,
         ),

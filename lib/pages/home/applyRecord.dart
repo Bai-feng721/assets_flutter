@@ -22,7 +22,7 @@ class _applyRecordState extends State<applyRecord> {
     this._getList();
   }
   _getList() async{
-    var response = await HttpUtil().get(Api.APPLYRECORD, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjQyMDQwNzViLWFlYmUtNDNjZi1hYTllLWQ3YTU0YTI1NzE2ZCJ9.cJxOk-ZcOw3vSVJslA7k9HHN1-gBnHZ1DYO0KkyCRERaCSnVNL2bWDu48fjnl0CxL9SDOeEIcL8u82CzZ4A40g');
+    var response = await HttpUtil().get(Api.APPLYRECORD);
     setState(() {
       this.applyList=response.data["rows"];
       print(this.applyList);

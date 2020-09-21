@@ -39,7 +39,7 @@ class _repairApplyState extends State<repairApply> {
       'reason': _contentController.text,
     };
     var data1 = json.encode(data);
-    var response = await HttpUtil().post(Api.REPAIR, data:data1,token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU2ZGI5NWU1LTE2ZjMtNGFlYS1iN2ViLTJiNjRiM2Q3YjA2ZCJ9.ROMYloJLzbI8jPRXKkkhq-fojYIOosCpQ5eRT6Nz9vidf_lw2qyhz4ce4SGPIcDiJMooComv7mSWvOB5yVyKbw');
+    var response = await HttpUtil().post(Api.REPAIR, data:data1);
     print(response.data);
     if(response.data['code']==200){
       Toast.toast(context,msg:response.data['msg']);

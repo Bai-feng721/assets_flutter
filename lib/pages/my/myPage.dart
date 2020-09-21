@@ -17,11 +17,11 @@ class _MyPageState extends State<MyPage> {
   @override
   void initState(){
     super.initState();
-    this._getinfo();
+    // this._getinfo();
   }
 
   _getinfo() async{
-    var response = await HttpUtil().get(Api.GETINFO, token:'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjJkMzg1NGYxLTg2ZTktNDI3ZS1iNWYyLTkzM2YxZjE3OTcxYyJ9.yjzPbO_c58uN_2rESWCQ8S2tOAcX9y8Lf6sDhySaT7x6Dq1H_-DzXuJkqJ9D_z6Jqumiyg_gU3WKjE20BNA7hQ');
+    var response = await HttpUtil().get(Api.GETINFO);
     setState(() {
       this.userInfo=response.data['user'];
       print(this.userInfo);
@@ -48,7 +48,8 @@ class _MyPageState extends State<MyPage> {
                     children: [
                       ClipOval(
                         child: Image.network(
-                          Api.BASE_URL+userInfo['avatar']??Api.BASE_URL+'/profile/avatar/2020/08/26/980419316eca98c610788308732f4afb.jpeg',
+                          // Api.BASE_URL+userInfo['avatar'] ??
+                              Api.BASE_URL+'/profile/avatar/2020/08/26/980419316eca98c610788308732f4afb.jpeg',
                           width: Adapt.px(100),
                           height: Adapt.px(100),
                           fit: BoxFit.cover,

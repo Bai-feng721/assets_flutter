@@ -1,18 +1,23 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
+import 'dart:convert' as convert;
 import 'package:myapp/pages/home/drawer/drawerPage.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/http/api.dart';
 import 'package:myapp/http/http.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 
 
 class HomeContent extends StatefulWidget {
   @override
   _HomeContentState createState() => _HomeContentState();
 }
-
+class ApiCookie {
+  static final CookieJar cookieJar = new CookieJar();
+}
 class _HomeContentState extends State<HomeContent> {
    String barcode = "";
    List assetsList=[];
@@ -22,6 +27,10 @@ class _HomeContentState extends State<HomeContent> {
      super.initState();
      this._getMyList();
      this._getDepartList();
+     List<Cookie> cookies = ApiCookie.cookieJar.loadForRequest(Uri.parse(Api.BASE_URL+Api.LOGIN));
+     // if(cookies.length<=0){
+     //   Navigator.pushNamed(context, '/login');
+     // }
    }
    _getMyList() async{
      var response = await HttpUtil().get(Api.MYASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
@@ -43,8 +52,8 @@ class _HomeContentState extends State<HomeContent> {
     Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        // title: Text('资产管理'),
-         title:  Text((barcode)),
+        title: Text('资产管理'),
+        //  title:  Text((barcode)),
         
         actions: <Widget>[ //导航栏右侧菜单
           IconButton(
@@ -165,7 +174,7 @@ class _HomeContentState extends State<HomeContent> {
                          )
                        ),
                        onTap: (){
-                         Navigator.pushNamed(context,'/buy', arguments:{"id":312312312});
+                         Navigator.pushNamed(context,'/路由地址', arguments:{"id":312312312});
                        },//点击
                       ),
                       

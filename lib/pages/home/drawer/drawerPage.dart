@@ -35,11 +35,11 @@ class _drawerPageState extends State<drawerPage> {
           ) ,
           ),
         new ListTile(
-            title: new Text('采购审批'),
+            title: new Text('buyApproval'),
             trailing: new Icon(Icons.arrow_right),
             onTap: () {
               Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/buyApproval');
+              Navigator.pushNamed(context, '/dsadada');
             }),
         new Divider(),
         new ListTile(

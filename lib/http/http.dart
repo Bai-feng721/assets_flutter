@@ -1,15 +1,18 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:myapp/http/api.dart';
-import 'package:myapp/units/getToken.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
-class CookieApi{
+class ApiCookie{
   static final CookieJar cookieJar = new CookieJar();
 }
-// String token = '';
+String getToken(){
+  List<Cookie> cookies = ApiCookie.cookieJar.loadForRequest(Uri.parse(Api.BASE_URL+Api.LOGIN));
+   return  cookies.length<=0?'':cookies[0].value;
+}
 
 class HttpUtil {
   static HttpUtil instance;
@@ -25,25 +28,7 @@ class HttpUtil {
    * config it and create
    */
   HttpUtil() {
-    //BaseOptions、Options、RequestOptions 都可以配置参数，优先级别依次递增，且可以根据优先级别覆盖参数
-    // options = BaseOptions(
-    //   //请求基地址,可以包含子路径
-    //   baseUrl: Api.BASE_URL,
-    //   //连接服务器超时时间，单位是毫秒.
-    //   connectTimeout: 10000,
-    //   //响应流上前后两次接受到数据的间隔，单位为毫秒。
-    //   receiveTimeout: 5000,
-    //   //Http请求头.
-    //   headers: {
-    //     //do something
-    //     "version": "1.0.0"
-    //   },
-    //   //请求的Content-Type，默认值是"application/json; charset=utf-8",Headers.formUrlEncodedContentType会自动编码请求体.
-    //   contentType: Headers.jsonContentType,
-    //   //表示期望以那种格式(方式)接受响应数据。接受四种类型 `json`, `stream`, `plain`, `bytes`. 默认值是 `json`,
-    //   responseType: ResponseType.json,
-    // );
-    //
+
     BaseOptions options = BaseOptions(
       baseUrl: Api.BASE_URL,
       contentType: Headers.jsonContentType,
@@ -51,15 +36,13 @@ class HttpUtil {
       receiveDataWhenStatusError: false,
       connectTimeout: 30000,
       receiveTimeout: 3000,
-      // headers: {
-      //   "Authorization":"Bearer" +token,
-      //   // "version": "1.0.0"
-      // },
+      headers: {
+        "Authorization":getToken()==''?"":"Bearer " + getToken(),
+        // "version": "1.0.0"
+      },
     );
+    // print('22222-${getToken()}');
     dio = Dio(options);
-
-
-
 
     //Cookie管理
     dio.interceptors.add(CookieManager(CookieJar()));
@@ -67,9 +50,8 @@ class HttpUtil {
     //添加拦截器
     dio.interceptors.add(InterceptorsWrapper(
         onRequest: (RequestOptions options) {
-      print("请求之前");
-      // Do something before request is sent
-      return options; //continue
+          print('请求之前');
+          // if(getToken()=='') Navigator.pushNamed(context, '/');
     }, onResponse: (Response response) {
       print("响应之前");
       // Do something with response data
@@ -80,20 +62,13 @@ class HttpUtil {
       return e; //continue
     }));
   }
-  //      response.data; 响应体
-//      response.headers; 响应头
-//      response.request; 请求体
-//      response.statusCode; 状态码
   /*
    * get请求
    */
   get(url, {data,token}) async {
     Response response;
     try {
-      response = await dio.get(url,queryParameters: data,options: Options(headers: {
-        "Authorization":"Bearer " +token,
-      }));
-      print('getcooktoken---------${token}');
+      response = await dio.get(url,queryParameters: data);
       // print('get success---------${response}');
     } on DioError catch (e) {
       print('get error---------$e');
@@ -101,23 +76,15 @@ class HttpUtil {
     }
     return response;
   }
-
   /*
    * post请求
    */
-  post(url, {data,token}) async {
+  post(url, {data}) async {
     Response response;
     try {
-      // response = await dio.post(url,data:data);
+      response = await dio.request(url, data: data, options: Options(method:'post'));
       // print('post success---------${response.data}');
-      response = await dio.request(url, data: data, options: Options(method:'post',headers: {
-        "Authorization":"Bearer " +token,
-      }));
-      // print('post success---------${response.data}');
-      // print('postcooktoken---------${token}');
-
     } on DioError catch (e) {
-      print('token-----${token}');
       print('post error---------$e');
       formatError(e);
     }
@@ -150,6 +117,7 @@ class HttpUtil {
     if (e.type == DioErrorType.CONNECT_TIMEOUT) {
       // It occurs when url is opened timeout.
       print("连接超时");
+
     } else if (e.type == DioErrorType.SEND_TIMEOUT) {
       // It occurs when url is sent timeout.
       print("请求超时");

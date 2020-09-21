@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:myapp/http/api.dart';
 import 'package:myapp/pages/home/HomePage.dart';
 import 'package:myapp/pages/mess/messPage.dart';
 import 'package:myapp/pages/notice/noticePage.dart';
 import 'package:myapp/pages/my/myPage.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 
 
 class Tabs extends StatefulWidget {
@@ -10,6 +14,9 @@ class Tabs extends StatefulWidget {
   _TabsState createState() => _TabsState();
 }
 
+class ApiCookie {
+  static final CookieJar cookieJar = new CookieJar();
+}
 class _TabsState extends State<Tabs> {
   int _currentIndex = 0;
   List _pageList=[
@@ -18,7 +25,16 @@ class _TabsState extends State<Tabs> {
     MessPage(),
     MyPage()
   ];
+
+
   @override
+  void initState() {
+    super.initState();
+    List<Cookie> cookies = ApiCookie.cookieJar.loadForRequest(Uri.parse(Api.BASE_URL+Api.LOGIN));
+    // if(cookies.length<=0){
+    //   // Navigator.pushNamed(context, '/login');
+    // }
+  }
 
   Widget build(BuildContext context) {
     return new Scaffold(

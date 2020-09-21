@@ -17,7 +17,7 @@ class _assetsRepairState extends State<assetsRepair> {
     this._getList();
   }
   _getList() async{
-    var response = await HttpUtil().get(Api.MYASSETS, token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU2ZGI5NWU1LTE2ZjMtNGFlYS1iN2ViLTJiNjRiM2Q3YjA2ZCJ9.ROMYloJLzbI8jPRXKkkhq-fojYIOosCpQ5eRT6Nz9vidf_lw2qyhz4ce4SGPIcDiJMooComv7mSWvOB5yVyKbw');
+    var response = await HttpUtil().get(Api.MYASSETS);
     setState(() {
       this.assetsList=response.data["rows"];
       print(this.assetsList);
@@ -35,7 +35,7 @@ class _assetsRepairState extends State<assetsRepair> {
           return repairCell(
             name: item['name'],
             code: item['code'],
-            image: Api.BASE_URL+ item['avator'],
+            image: '${item['avator']}',
             id: item['id'],
           );
         }).toList()

@@ -38,7 +38,7 @@ class _assetsCellState extends State<assetsCell> {
     this._getStatus();
   }
   _getStatus() async{
-    var res = await HttpUtil().get(Api.ASSETSSTATUS+'?type=asset_status&value=${widget.status}', token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijc4MGJiNjNhLTcwZGItNGE4OC1hYzkxLTEzOGRmNmJkMmI5MSJ9.yskQmXeGv0Ql9OdaxUkAfktfPMJtjK2VZxFj8UVbAqocGp4b6eQ7RcyYpEkzncjCWi6_WyUoU8XwdIVOnsCDkw');
+    var res = await HttpUtil().get(Api.ASSETSSTATUS+'?type=asset_status&value=${widget.status}');
     setState(() {
       this.assetsStatus=res.data["data"];
       print(this.assetsStatus);
@@ -63,7 +63,7 @@ class _assetsCellState extends State<assetsCell> {
       ),
       child: ListTile(
         leading: Image.network(
-          widget.image??Api.BASE_URL+'/profile/avatar/2020/09/08/d425816766f32d9d5344f26e4a217a32.jpg',
+          widget.image!='null'?Api.BASE_URL+widget.image:'http://assets.wangzhensh.cn/static/img/noImg.61c41a89.png',
           width: Adapt.px(150),
           fit:BoxFit.cover ,
         ),

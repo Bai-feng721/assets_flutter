@@ -45,7 +45,7 @@ class _overApplyState extends State<overApply> {
       'id':'${arguments['id']}',
       'remarks': _contentController.text,
     });
-    var response = await HttpUtil().post(Api.ASSETSOVER, data:formData,token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU2ZGI5NWU1LTE2ZjMtNGFlYS1iN2ViLTJiNjRiM2Q3YjA2ZCJ9.ROMYloJLzbI8jPRXKkkhq-fojYIOosCpQ5eRT6Nz9vidf_lw2qyhz4ce4SGPIcDiJMooComv7mSWvOB5yVyKbw');
+    var response = await HttpUtil().post(Api.ASSETSOVER, data:formData);
     print(response.data);
     if(response.data['code']==200){
       Toast.toast(context,msg:response.data['msg']);

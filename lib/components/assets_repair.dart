@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/units/Adapt.dart';
+import 'package:myapp/http/api.dart';
 
 class repairCell extends StatefulWidget {
   final String image;
@@ -35,7 +36,7 @@ class _repairCellState extends State<repairCell> {
       ),
       child: ListTile(
         leading: Image.network(
-          widget.image,
+          widget.image!='null'?Api.BASE_URL+widget.image:'http://assets.wangzhensh.cn/static/img/noImg.61c41a89.png',
           width: Adapt.px(150),
           fit:BoxFit.cover ,
         ),

@@ -2,7 +2,7 @@ class Api {
 
   static const String BASE_URL = "http://assets.wangzhensh.cn/api";
 
-  static const String TEST_URL = "";
+  static const String IMG_URL = "http://assets.wangzhensh.cn";
 
   //登录
   static const String LOGIN = "/app/login";
